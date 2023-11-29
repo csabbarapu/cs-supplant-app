@@ -39,7 +39,7 @@ class PipelineStack(Stack):
             ),
         )
 
-        # Passing Serverless stack in a stage to pipeline
+        # Passing Serverless stack in a stage to pipeline to deploy.
         self.deploy = self.pipeline.add_stage(
             DeployAll(self, "Deploy", env=aws_env),
         )

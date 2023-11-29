@@ -7,7 +7,7 @@ class DeployAll(cdk.Stage):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        # ServerlessApp
+        # Defining ServerlessApp stack.
         self.serverless_stack = ServerlessStack(
             self,
             "cs-serverless-stack",
