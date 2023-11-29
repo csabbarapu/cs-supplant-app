@@ -2,6 +2,67 @@
 
 This project deploys a fully functional CDK Pipeline together with a serverelss app that does string replacement.
 
+    cs-supplant-sapp
+    |
+    +-- cdk_pipeline
+    |   |
+    |   +-- pipeline_stack.py
+    +-- packages
+    |   |
+    |   +-- stack_1
+    |   |   |
+    |   +-- stack_2
+    |   |   |   |
+    |   +-- stack_N
+    +-- lambda_functions
+    |   |
+    |   +-- lambda_a
+    |   +-- lambda_b
+    +-- operations
+    |   |
+    |   +-- environment.py
+    +-- stages
+    |   |
+    |   +-- stage.py
+    +-- tests
+    |   |
+    |   +-- unit_tests
+    |   |   |
+    |   |   +-- stack_1.py
+    |   |   +-- stack_2.py
+    +-- .gitignore
+    +-- .pre-commit-config.yaml
+    +-- .app.py
+    +-- cdk.json
+    +-- requirements.txt
+    +-- README.md
+
+## `/cdk_pipeline`: Pipeline_stack for CICD
+
+At this location cdk pipeline stack will be stored.
+
+## `/packages`: Packages
+
+At this location, all stacks will be stored.
+
+## `/operations`: environments/cloud targets
+
+At this location, environments/cloud targets will be defined.
+
+## `/stages`: Define Stages here for deploying inside the pipeline.
+
+At this location, all stages will be stored. A stage can have a stack or group of stacks deployed together.
+
+## `/lambda_functions`: lambda code
+
+We use a lambda folder to store all lambda core under its own handler folder
+
+## `/tests`: Tests
+
+We use thisfor _unit_ tests:
+
+- **Unit tests** should test the smallest independent units of your package code, i.e., functions or classes that only accomplish one piece of functionality.
+  Each unit test should run very fast and should not connect to external services like AWS.
 ## Install the AWS CDK
 
 Install the AWS CDK Toolkit globally using the following Node Package Manager command.
