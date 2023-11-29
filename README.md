@@ -1,5 +1,7 @@
 # cs-supplant-app
 
+This project deploys a fully functional CDK Pipeline together with a serverelss app that does string replacement.
+
 ## Install the AWS CDK
 
 Install the AWS CDK Toolkit globally using the following Node Package Manager command.
@@ -92,31 +94,17 @@ Enjoy!
 In the "Template" field, enter the following JSON payload:
 ```json
 {
-    "input_str": "The analysts of ABN did a great job!."
+    "input_str": "The analysts of Rabo did a great job!."
 }
-```
-
-### AWS CLI
-
-- Invoke the API Gateway resource from the AWS CLI
-
-```
-aws apigateway test-invoke-method \
-    --rest-api-id <rest-api-id> \
-    --resource-id <resource-id> \
-    --http-method POST \
-    --path-with-query-string /my-resource \
-    --body '{"input_str": "The analysts of ABN did a great job!."}'
 ```
 
 ### Curl
 - CURL command that you can use to invoke the API Gateway resource with an input string
 ```
 curl -X POST \
-  https://<api-id>.execute-api.<region>.amazonaws.com/my-resource \
+  https://6mix60gim9.execute-api.eu-west-1.amazonaws.com/prod/ \
   -H 'Content-Type: application/json' \
   -d '{
-    "input_str": "The analysts of ABN did a great job!."
+    "input_str": "The analysts of ING did a great job!."
   }'
-
 ```

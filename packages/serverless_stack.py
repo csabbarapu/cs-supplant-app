@@ -8,16 +8,17 @@ class ServerlessStack(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # We implement an Amazon API Gateway REST API connected to an AWS Lambda function.
-
         self.api_triggers_lambda = ApiGatewayToLambda(
             self,
             "ApiGatewayTriggersLambda",
+            # Defining lambda function props
             lambda_function_props=_lambda.FunctionProps(
                 function_name="cs-string-supplant",
                 runtime=_lambda.Runtime.PYTHON_3_9,
                 handler="string_supplant.lambda_handler",
-                code=_lambda.Code.from_asset("./lambda/"),
+                code=_lambda.Code.from_asset("./lambda_functions/"),
             ),
+            # Defining apigateway props
             api_gateway_props=apigw.RestApiProps(
                 rest_api_name="cs-supplant-api",
                 default_method_options=apigw.MethodOptions(
