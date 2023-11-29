@@ -1,5 +1,5 @@
 from aws_solutions_constructs.aws_apigateway_lambda import ApiGatewayToLambda
-from aws_cdk import aws_lambda as _lambda, Stack
+from aws_cdk import aws_lambda as _lambda, aws_apigateway as apigw, App, Stack
 from constructs import Construct
 
 
@@ -17,6 +17,11 @@ class ServerlessStack(Stack):
                 runtime=_lambda.Runtime.PYTHON_3_9,
                 handler="string_supplant.lambda_handler",
                 code=_lambda.Code.from_asset("./lambda/"),
-                environment={"ENV_SQS_QUEUE": self.queue_sqs.queue_url},  # todo wip
+            ),
+            api_gateway_props=apigw.RestApiProps(
+                rest_api_name="cs-supplant-api",
+                default_method_options=apigw.MethodOptions(
+                    authorization_type=apigw.AuthorizationType.NONE
+                ),
             ),
         )

@@ -78,3 +78,45 @@ command.
  * `cdk docs`        open CDK documentation
 
 Enjoy!
+
+## Usage
+
+### AWS Management Console
+- Open the AWS Management Console and navigate to the API Gateway service.
+- Select the API Gateway that you created using the AWS CDK code.
+- Click on the `Resources` link in the left-hand menu.
+- Click on the resource that you created (in this example, it's called `cs-supplant-api`).
+- Click on the `POST` method that you created.
+- In the `Integration Request` section, you should see a "Body Mapping Templates" dropdown menu.
+- Select `application/json` from the dropdown menu.
+In the "Template" field, enter the following JSON payload:
+```json
+{
+    "input_str": "The analysts of ABN did a great job!."
+}
+```
+
+### AWS CLI
+
+- Invoke the API Gateway resource from the AWS CLI
+
+```
+aws apigateway test-invoke-method \
+    --rest-api-id <rest-api-id> \
+    --resource-id <resource-id> \
+    --http-method POST \
+    --path-with-query-string /my-resource \
+    --body '{"input_str": "The analysts of ABN did a great job!."}'
+```
+
+### Curl
+- CURL command that you can use to invoke the API Gateway resource with an input string
+```
+curl -X POST \
+  https://<api-id>.execute-api.<region>.amazonaws.com/my-resource \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "input_str": "The analysts of ABN did a great job!."
+  }'
+
+```

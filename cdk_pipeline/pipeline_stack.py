@@ -13,7 +13,7 @@ class PipelineStack(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # Defining Environment
-        env = get_aws_env
+        aws_env = get_aws_env()
 
         # We are creating a pipeline for deploying to AWS account.
         self.pipeline = pipelines.CodePipeline(
@@ -39,10 +39,11 @@ class PipelineStack(Stack):
             ),
         )
 
-        # Passing VPC Serverless, and Container stacks in a stage to pipeline
-        # self.deploy = self.pipeline.add_stage(
-        #     DeployAll(self, "Deploy", env=env),
-        # )
+        # Passing Serverless stack in a stage to pipeline
+        self.deploy = self.pipeline.add_stage(
+            DeployAll(self, "Deploy", env=aws_env),
+        )
+
         # self.destroy = self.pipeline.add_stage(
         #     DeployAll(self, "Destroy", env=env),
         # )
