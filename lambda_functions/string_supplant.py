@@ -65,5 +65,5 @@ def lambda_handler(event, context):
         return {
             "statusCode": 200,
             "headers": {"Content-Type": "text/plain"},
-            "body": f"Hello, TMNL Team! Here is your expected output: \n {output_string}",
+            "body": f"Hello, Team! Here is your expected output: \n {output_string}",
         }

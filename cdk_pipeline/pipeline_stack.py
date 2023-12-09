@@ -40,11 +40,11 @@ class PipelineStack(Stack):
         )
 
         # Passing Serverless stack in a stage to pipeline to deploy.
-        self.deploy = self.pipeline.add_stage(
-            DeployAll(self, "Deploy", env=aws_env),
-        )
-
-        # self.destroy = self.pipeline.add_stage(
-        #     DeployAll(self, "Destroy", env=env),
+        # self.deploy = self.pipeline.add_stage(
+        #     DeployAll(self, "Deploy", env=aws_env),
         # )
+
+        self.destroy = self.pipeline.add_stage(
+            DeployAll(self, "Destroy", env=aws_env),
+        )
         # self.destroy.add_post(pipelines.ManualApprovalStep("approval"))
