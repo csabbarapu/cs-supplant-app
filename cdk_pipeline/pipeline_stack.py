@@ -44,7 +44,7 @@ class PipelineStack(Stack):
         #     DeployAll(self, "Deploy", env=aws_env),
         # )
 
-        self.destroy = self.pipeline.add_stage(
-            DeployAll(self, "Destroy", env=aws_env),
-        )
+        # self.destroy = self.pipeline.add_stage(
+        #     DeployAll(self, "Destroy", env=aws_env),
+        # )
         # self.destroy.add_post(pipelines.ManualApprovalStep("approval"))
